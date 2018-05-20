@@ -14,10 +14,9 @@ class ConsoleApp1
 {
   static async Task Main(string[] args)
   {
-    HLSStreamEntry[] streams = HLSStreamEntry.Parse(args[0]);
-    HLSStream stream = await HLSStream.Open(streams[0].Path);
-    
-    Console.WriteLine(stream.TargetDuration);
+    HLSStreamEntry[] streams = HLSStreamEntry.GetEntries(args[0]); // First list all available adaptive streams
+    HLSStream stream = await HLSStream.Open(streams[0].Path); // Open HLSStream object from the Path of the first available       stream entry
+    Console.WriteLine(stream.TargetDuration); // Write out the Target Duration of the stream
   }
 }
 ```
