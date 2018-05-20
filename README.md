@@ -14,5 +14,10 @@ class ConsoleApp1
 {
   static async Task Main(string[] args)
   {
+    HLSStreamEntry[] streams = HLSStreamEntry.Parse(args[0]);
+    HLSStream stream = await HLSStream.Open(streams[0].Path);
     
+    Console.WriteLine(stream.TargetDuration);
+  }
+}
 ```
